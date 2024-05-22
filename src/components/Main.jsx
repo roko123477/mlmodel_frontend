@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import axios from "axios";
 import Typewriter from "./Typewriter";
 import FadeLoader from "react-spinners/FadeLoader";
 import { Navigate,useNavigate } from "react-router-dom";
+import Header from "./Header";
+import { UserContext } from "./UserContext";
+axios.defaults.withCredentials = true;
 
 const FileUpload = () => {
   const [image, setImage] = useState("");
@@ -10,6 +13,10 @@ const FileUpload = () => {
   const[load,setLoad]=useState(false);
   let [color, setColor] = useState("#60a5fa");
   const navigate = useNavigate();
+  const { ready, user, setUser } = useContext(UserContext);
+  if (ready && !user) {
+    return <Navigate to={"/login"} />;
+  }
   let formData = new FormData();
 
   const handleFileChange = (e) => {
@@ -48,6 +55,9 @@ const FileUpload = () => {
       aria-label="Loading Spinner"
       data-testid="loader"
     /></div>}
+     <div className="py-4 flex flex-col ">
+      <Header />
+    </div>
  <div class="flex w-full h-screen items-center justify-start min-h-screen bg-slate-300" style={{ backgroundImage:`url(${'https://t3.ftcdn.net/jpg/02/26/11/28/360_F_226112855_yeHzKpT5GlvblgZlibf9MvJZLVjsqGYf.jpg'})`, backgroundSize: "cover",backgroundRepeat:"no-repeat" }}>
    
     <div className="flex flex-col items-center w-[1000px]">
