@@ -1,4 +1,5 @@
 .glass{
+    border: 1px solid black;
     background: rgba(255, 255, 255, 0.55);
     border-radius: 16px;
     box-shadow: 0 4px 30px #4747470b;

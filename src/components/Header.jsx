@@ -4,11 +4,11 @@ import { UserContext } from "./UserContext";
 
 const Header = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
-  const [name, setName] = useState("");
+
+ 
   
   return (
-    <header className="flex justify-between">
+    <header className="flex justify-between w-full h-16">
       <Link to={"/"} className="flex items-center gap-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@ const Header = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-16 h-16"
         >
           <path
             strokeLinecap="round"
@@ -25,14 +25,14 @@ const Header = () => {
           />
         </svg>
 
-        <span className="font-bold md:text-3xl text-gray-500">
-          π<sup className="text-primary">Predict</sup>
+        <span className="font-bold md:text-4xl text-gray-500">
+          ML<sup className="text-primary">Predict</sup>
         </span>
       </Link>
-      <div className="items-center justify-between flex w-96 rounded-full sticky mt-.5"></div>
+     
       <Link
         to={user ? "/account" : "/login"}
-        className="flex items-center border border-primary gap-2 rounded-full py-1 px-2"
+        className="px-10 w-64 flex items-center border border-primary gap-2 rounded-full py-1"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ const Header = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-10 h-10 mr-5"
         >
           <path
             strokeLinecap="round"
@@ -53,7 +53,7 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-6 h-6 relative top-1"
+            className="w-8 h-8"
           >
             <path
               fillRule="evenodd"
@@ -62,7 +62,7 @@ const Header = () => {
             />
           </svg>
         </div>
-        {!!user && <div>{user.name}</div>}
+        {!!user && <div className="text-xl">{user.name}</div>}
       </Link>
     </header>
   );

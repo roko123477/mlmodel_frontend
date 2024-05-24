@@ -51,16 +51,16 @@ const RegisterPage = () => {
   //   <Header />
   // <div className="container mx-auto">
         <div className="flex justify-center items-center h-screen">
-          <div className={`${styles.glass}`} style={{ width: "50%" }}>
+          <div  style={{ width: "30%" }} className="border-2 border-[#3792cb] rounded-lg shadow-xl p-8 flex justify-center items-center flex-col">
             <div className="title flex flex-col items-center">
-              <h4 className="text-5xl font-bold">Register</h4>
+              <h4 className="text-5xl font-bold text-[#3792cb]">Register</h4>
               <span className="py-4 text-xl w-2/3 text-center text-gray-500">
                 Provide the necessary details.
               </span>
             </div>
 
-            <form className="py-1">
-              <div className="profile flex justify-center py-4">
+            <form className="py-1 w-[70%]">
+              <div className="profile pb-20 flex justify-center py-4">
                 <label htmlFor="profile">
                   <img
                     src={file || avatar}
@@ -76,10 +76,10 @@ const RegisterPage = () => {
                 />
               </div>
 
-              <div className="textbox flex flex-col items-center gap-6">
-                <div className="name flex w-3/4 gap-10">
+              <div className="textbox flex flex-col items-center gap-6 w-full">
+                
                   <input
-                    className={`${styles.textbox} ${extend.textbox}`}
+                    className="w-full"
                     value={firstname}
                     onChange={(e) => setFirstName(e.target.value)}
                     type="text"
@@ -92,9 +92,9 @@ const RegisterPage = () => {
                     type="text"
                     placeholder="LastName"
                   />
-                </div>
+                
 
-                <div className="name flex w-3/4 gap-10">
+                
                   <input
                     className={`${styles.textbox} ${extend.textbox}`}
                     value={phone}
@@ -109,7 +109,7 @@ const RegisterPage = () => {
                     type="email"
                     placeholder="Email*"
                   />
-                </div>
+                
 
                 <input
                   className={`${styles.textbox}${extend.textbox}`}

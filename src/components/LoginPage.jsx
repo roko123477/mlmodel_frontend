@@ -5,7 +5,7 @@ import { UserContext } from "./UserContext";
 
 import avatar from '../assets/profile.png';
 import styles from "./LoginPage.module.css"
-import Header from "./Header";
+// import Header from "./Header";
 axios.defaults.withCredentials = true;
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -36,23 +36,23 @@ const LoginPage = () => {
     // <div className="container mx-auto">
     
 
-      <div className='flex justify-center items-center h-screen'>
-        <div className={styles.glass} style={{width:"50%"}}>
+      <div className=' flex justify-center items-center h-screen'>
+        <div style={{width:"25%"}} className="border-2 border-[#3792cb] rounded-lg shadow-xl p-8 flex justify-center items-center flex-col">
 
           <div className="title flex flex-col items-center">
-            <h4 className='text-5xl font-bold'>Login</h4>
+            <h4 className='text-5xl font-bold text-[#3792cb]'>Login</h4>
             <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
               Explore More by connecting with us.
             </span>
           </div>
 
-          <form className='py-1'>
-              <div className='profile flex justify-center py-4'>
+          <form className='py-1 w-[70%]'>
+              <div className='pb-20 profile flex justify-center py-4'>
                   <img src={avatar} className={styles.profile_img} alt="avatar" />
               </div>
 
-              <div className="textbox flex flex-col items-center gap-6">
-                  <input className={styles.textbox} type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email' />
+              <div className="w-full textbox flex flex-col items-center gap-6">
+                  <input className="w-full" type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email' />
                   <input className={styles.textbox} type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Password' />
                   <button onClick={loginUser} className={styles.btn} type='submit'>Sign in</button>
               </div>

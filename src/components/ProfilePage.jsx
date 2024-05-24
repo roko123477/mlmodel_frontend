@@ -13,10 +13,6 @@ import extend from "./Profile.module.css";
 import avatar from "../assets/profile.png";
 
 const ProfilePage = () => {
-  let { subpage } = useParams();
-  if (subpage === undefined) {
-    subpage = "profile";
-  }
   const { ready, user, setUser } = useContext(UserContext);
 
   const [redirect, setRedirect] = useState(false);
@@ -44,28 +40,28 @@ const ProfilePage = () => {
     }
   }, [user]);
 
-//   const onUpload = async (e) => {
-//     const base64 = await convertToBase64(e.target.files[0]);
-//     setFile(base64);
-//   };
-//   const handleUpdate = async (e) => {
-//     e.preventDefault();
-//     //  console.log(firstname,lastname,email,file,phone,id);
-//     try {
-//       const { data } = await axios.put("/profileupdate", {
-//         firstname,
-//         lastname,
-//         email,
-//         file,
-//         phone,
-//         id,
-//       });
-//       console.log(data);
-//       alert("Profile updated successfully");
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  //   const onUpload = async (e) => {
+  //     const base64 = await convertToBase64(e.target.files[0]);
+  //     setFile(base64);
+  //   };
+  //   const handleUpdate = async (e) => {
+  //     e.preventDefault();
+  //     //  console.log(firstname,lastname,email,file,phone,id);
+  //     try {
+  //       const { data } = await axios.put("/profileupdate", {
+  //         firstname,
+  //         lastname,
+  //         email,
+  //         file,
+  //         phone,
+  //         id,
+  //       });
+  //       console.log(data);
+  //       alert("Profile updated successfully");
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
   async function logout() {
     await axios.post("http://localhost:5000/logout");
@@ -81,97 +77,83 @@ const ProfilePage = () => {
     return <Navigate to={"/login"} />;
   }
   if (redirect) {
-    window.location.href="/login";
+    window.location.href = "/login";
   }
   return (
-    <div className="py-4 flex flex-col min-h-screen">
-      <Header />
+    <div className="py-4 flex flex-col h-screen">
+      <div className="py-4 flex flex-col absolute w-full p-12">
+        <Header />
+      </div>
       <div>
-      
-        {subpage === "profile" && (
-          <div className="container mx-auto">
-            <div className="flex justify-center items-center h-screen">
-              <div
-                className={`${styles.glass} ${extend.glass}`}
-                style={{ width: "50%" }}
-              >
-                <div className="title flex flex-col items-center">
-                  <h4 className="text-5xl font-bold">Profile</h4>
-                  
+        <div className="container mx-auto ">
+          <div className="flex justify-center items-center mt-64">
+            <div
+              className="border-2 border-[#3792cb] rounded-lg shadow-xl p-8 flex justify-center items-center flex-col"
+              style={{ width: "35%" }}
+            >
+              <div className="title flex flex-col items-center">
+                <h4 className="text-5xl font-bold text-[#3792cb]">Profile</h4>
+              </div>
+
+              <form className="py-1 w-[70%]">
+                <div className="profile flex justify-center py-4 mb-16">
+                  <label htmlFor="profile">
+                    <img
+                      src={file || avatar}
+                      className={`${styles.profile_img} ${extend.profile_img}`}
+                      alt="avatar"
+                    />
+                  </label>
+                  <input type="file" id="profile" name="profile" />
                 </div>
 
-                <form className="py-1">
-                  <div className="profile flex justify-center py-4">
-                    <label htmlFor="profile">
-                      <img
-                        src={file || avatar}
-                        className={`${styles.profile_img} ${extend.profile_img}`}
-                        alt="avatar"
-                      />
-                    </label>
-                    <input
-                      type="file"
-                      
-                      id="profile"
-                      name="profile"
-                    />
-                  </div>
+                <div className="textbox flex flex-col items-center gap-6 w-full">
+                  <input
+                    className={`${styles.textbox} ${extend.textbox}`}
+                    type="text"
+                    onChange={(e) => setFirstName(e.target.value)}
+                    value={firstname}
+                    placeholder="FirstName"
+                  />
+                  <input
+                    className={`${styles.textbox} ${extend.textbox}`}
+                    type="text"
+                    onChange={(e) => setLastName(e.target.value)}
+                    value={lastname}
+                    placeholder="LastName"
+                  />
 
-                  <div className="textbox flex flex-col items-center gap-6">
-                    <div className="name flex w-3/4 gap-10">
-                      <input
-                        className={`${styles.textbox} ${extend.textbox}`}
-                        type="text"
-                        onChange={(e) => setFirstName(e.target.value)}
-                        value={firstname}
-                        placeholder="FirstName"
-                      />
-                      <input
-                        className={`${styles.textbox} ${extend.textbox}`}
-                        type="text"
-                        onChange={(e) => setLastName(e.target.value)}
-                        value={lastname}
-                        placeholder="LastName"
-                      />
-                    </div>
+                  <input
+                    className={`${styles.textbox} ${extend.textbox}`}
+                    type="text"
+                    onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    placeholder="Mobile No."
+                  />
+                  <input
+                    className={`${styles.textbox} ${extend.textbox}`}
+                    type="text"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    placeholder="Email*"
+                  />
+                </div>
 
-                    <div className="name flex w-3/4 gap-10">
-                      <input
-                        className={`${styles.textbox} ${extend.textbox}`}
-                        type="text"
-                        onChange={(e) => setPhone(e.target.value)}
-                        value={phone}
-                        placeholder="Mobile No."
-                      />
-                      <input
-                        className={`${styles.textbox} ${extend.textbox}`}
-                        type="text"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                        placeholder="Email*"
-                      />
-                    </div>
-
-                    
-                  </div>
-
-                  <div className="text-center py-4">
-                    <span className="text-gray-500">
-                      come back later{" "}
-                      <button
-                        onClick={logout}
-                        className="text-white bg-gray-500 rounded-2xl p-2 hover:bg-primary"
-                      >
-                        Logout
-                      </button>
-                    </span>
-                  </div>
-                </form>
-              </div>
+                <div className="text-center py-4">
+                  <span className="text-gray-500 text-2xl">
+                    come back later{" "}
+                    <button
+                      onClick={logout}
+                      className="w-36 text-white bg-primary rounded-2xl p-2 hover:bg-gray-500"
+                    >
+                      Logout
+                    </button>
+                  </span>
+                </div>
+              </form>
             </div>
           </div>
-        )}
-       
+        </div>
       </div>
     </div>
   );
